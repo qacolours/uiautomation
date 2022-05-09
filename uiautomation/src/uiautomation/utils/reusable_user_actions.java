@@ -24,6 +24,9 @@ import uiautomation.listners.listnerfunctions;
 
 public class reusable_user_actions extends listnerfunctions {
 	
+	/*Method Name - getCurrentDate
+	 * Method Function - To return the current date in form of string
+	 */
 	public String getCurrentDate(String sSpaceRemovalRequired) {
 		
 		Date date = Calendar.getInstance().getTime();  
