@@ -8,16 +8,16 @@ import java.util.concurrent.TimeUnit;
 
 import javax.print.attribute.standard.OutputDeviceAssigned;
 
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 
 import uiautomation.listners.listnerfunctions;
 
@@ -55,7 +55,7 @@ public class business_actions {
 				oBrowser.get(sNavigationURL);
 				oBrowser.manage().timeouts().pageLoadTimeout(Duration.ofMillis(10000));
 				
-				extent_report.log(Status.INFO,"The browser to be launched is : " + sBrowserType);
+				extent_report.log(LogStatus.INFO,"The browser to be launched is : " + sBrowserType);
 				logger.info("The browser to be launched is : " + sBrowserType);
 				
 			} else if (sBrowserType.equalsIgnoreCase("ie")) {
@@ -69,7 +69,7 @@ public class business_actions {
 				oBrowser.get(sNavigationURL);
 				oBrowser.manage().timeouts().pageLoadTimeout(Duration.ofMillis(10000));
 				
-				extent_report.log(Status.INFO,"The browser to be launched is : " + sBrowserType);
+				extent_report.log(LogStatus.INFO,"The browser to be launched is : " + sBrowserType);
 				logger.info("The browser to be launched is : " + sBrowserType);
 				
 			} else if (sBrowserType.equalsIgnoreCase("firefox")) {
@@ -85,7 +85,7 @@ public class business_actions {
 				
 				oUA.implicitWait(oBrowser, extent_report, 5000);
 				
-				extent_report.log(Status.INFO,"The browser to be launched is : " + sBrowserType);
+				extent_report.log(LogStatus.INFO,"The browser to be launched is : " + sBrowserType);
 				logger.info("The browser to be launched is : " + sBrowserType);
 				
 			} else if (sBrowserType.equalsIgnoreCase("edge")) {
@@ -100,7 +100,7 @@ public class business_actions {
 				
 				oUA.implicitWait(oBrowser, extent_report, 5000);
 								
-				extent_report.log(Status.INFO,"The browser to be launched is : " + sBrowserType);
+				extent_report.log(LogStatus.INFO,"The browser to be launched is : " + sBrowserType);
 				logger.info("The browser to be launched is : " + sBrowserType);
 				
 			} else {
@@ -116,13 +116,13 @@ public class business_actions {
 				
 				oUA.implicitWait(oBrowser, extent_report, 5000);
 				
-				extent_report.log(Status.INFO,"The browser to be launched is : " + sBrowserType);
+				extent_report.log(LogStatus.INFO,"The browser to be launched is : " + sBrowserType);
 				logger.info("The browser to be launched is : " + sBrowserType);
 	
 			}
 			
 		} catch (Exception e) {
-			extent_report.log(Status.FAIL,"Browser did not launch properly. Failed with error message - " + e.getMessage());
+			extent_report.log(LogStatus.FAIL,"Browser did not launch properly. Failed with error message - " + e.getMessage());
 			logger.error("Browser did not launch properly. Failed with error message - " + e.getMessage());
 		}
 		
@@ -137,11 +137,11 @@ public class business_actions {
 			param_Driver.close();
 			param_Driver.quit();
 			
-			extent_report.log(Status.INFO,"The Browser has been closed successfully");
+			extent_report.log(LogStatus.INFO,"The Browser has been closed successfully");
 			logger.info("The Browser has been closed successfully");
 			
 		} catch(Exception e) {
-			extent_report.log(Status.FAIL,"Browser did not get closed properly. Failed with error message - " + e.getMessage());
+			extent_report.log(LogStatus.FAIL,"Browser did not get closed properly. Failed with error message - " + e.getMessage());
 			logger.error("Browser did not get closed properly. Failed with error message - " + e.getMessage());
 		}
 		

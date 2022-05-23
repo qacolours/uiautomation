@@ -1,13 +1,12 @@
 package uiautomation.pages;
 
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.Status;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 
 import uiautomation.listners.listnerfunctions;
 import uiautomation.utils.reusable_user_actions;
@@ -27,12 +26,12 @@ public class home_page {
 			
 			String ssname = oUA.captureScreenshot(param_Browser,"LogoutFromApplication");
 			
-			extent_report.log(Status.PASS,"Step LogoutFromApplication executed successfully", MediaEntityBuilder.createScreenCaptureFromPath(ssname).build());
+			extent_report.log(LogStatus.PASS,"Step LogoutFromApplication executed successfully", extent_report.addScreenCapture(ssname));
 			logger.info("Step LogoutFromApplication executed successfully");
 		} else {
 			String ssname = oUA.captureScreenshot(param_Browser,"LogoutFromApplication");
 			
-			extent_report.log(Status.FAIL,"Logout link is not visible in the page", MediaEntityBuilder.createScreenCaptureFromPath(ssname).build());
+			extent_report.log(LogStatus.FAIL,"Logout link is not visible in the page", extent_report.addScreenCapture(ssname));
 			logger.error("Logout link is not visible in the page");
 			
 			throw new Exception("Logout link is not visible in the page");
@@ -48,13 +47,13 @@ public class home_page {
 			
 			String ssname = oUA.captureScreenshot(param_Browser,"ValidateLogout");
 			
-			extent_report.log(Status.PASS,"Step ValidateLogout executed successfully", MediaEntityBuilder.createScreenCaptureFromPath(ssname).build());
+			extent_report.log(LogStatus.PASS,"Step ValidateLogout executed successfully", extent_report.addScreenCapture(ssname));
 			logger.info("Step ValidateLogout executed successfully");
 			
 		} else {
 			String ssname = oUA.captureScreenshot(param_Browser,"ValidateLogout");
 			
-			extent_report.log(Status.FAIL,"User not logged out of the system", MediaEntityBuilder.createScreenCaptureFromPath(ssname).build());
+			extent_report.log(LogStatus.FAIL,"User not logged out of the system", extent_report.addScreenCapture(ssname));
 			logger.error("User not logged out of the system");
 			
 			throw new Exception("User not logged out of the system");

@@ -7,14 +7,13 @@ import java.util.Properties;
 
 import javax.print.attribute.standard.OutputDeviceAssigned;
 
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.Status;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 
 import uiautomation.listners.listnerfunctions;
 import uiautomation.utils.reusable_user_actions;
@@ -31,11 +30,11 @@ public class login_page {
 		if (oLF.findElements(param_Browser, "lnk_Login").size() != 0) {
 			oLF.findElement(param_Browser, "lnk_Login").click();
 			
-			extent_report.log(Status.PASS,"Step clickOnLogin executed successfully");
+			extent_report.log(LogStatus.PASS,"Step clickOnLogin executed successfully");
 			logger.info("Step clickOnLogin executed successfully");
 			
 		} else {
-			extent_report.log(Status.FAIL,"Login link is not visible in the page");
+			extent_report.log(LogStatus.FAIL,"Login link is not visible in the page");
 			logger.error("Login link is not visible in the page");
 			
 			throw new Exception("Login link is not visible in the page");
@@ -53,11 +52,11 @@ public class login_page {
 			
 			oUA.implicitWait(param_Browser, extent_report, 5000);
 			
-			extent_report.log(Status.PASS,"Step loginToApplication executed successfully");
+			extent_report.log(LogStatus.PASS,"Step loginToApplication executed successfully");
 			logger.info("Step loginToApplication executed successfully");
 			
 		} else {
-			extent_report.log(Status.FAIL,"UserName field is not visible in the page");
+			extent_report.log(LogStatus.FAIL,"UserName field is not visible in the page");
 			logger.error("UserName field is not visible in the page");
 			
 			throw new Exception("UserName field is not visible in the page");
@@ -73,19 +72,19 @@ public class login_page {
 			if (oLF.findElement(param_Browser, "lnk_LoggedInUserName").getText().equalsIgnoreCase("Welcome qalabs")) {
 				
 				String ssname = oUA.captureScreenshot(param_Browser,"ValidateLogin");
-				extent_report.log(Status.PASS,"User has been logged in successfully", MediaEntityBuilder.createScreenCaptureFromPath(ssname).build());
+				extent_report.log(LogStatus.PASS,"User has been logged in successfully", extent_report.addScreenCapture(ssname));
 				logger.info("User has been logged in successfully");
 				
-				extent_report.log(Status.PASS,"Step validateLogin executed successfully");
+				extent_report.log(LogStatus.PASS,"Step validateLogin executed successfully");
 				logger.info("Step validateLogin executed successfully");
 				
 			} else {
-				extent_report.log(Status.FAIL,"User not logged in successfully");
+				extent_report.log(LogStatus.FAIL,"User not logged in successfully");
 				logger.error("User not logged in successfully");
 			}
 			
 		} else {
-			extent_report.log(Status.FAIL,"Logged in user name link is not visible in the page");
+			extent_report.log(LogStatus.FAIL,"Logged in user name link is not visible in the page");
 			logger.error("Logged in user name link is not visible in the page");
 			
 			throw new Exception("Logged in user name link is not visible in the page");
@@ -124,11 +123,11 @@ public class login_page {
 			
 			oUA.implicitWait(param_Browser, extent_report, 5000);
 			
-			extent_report.log(Status.PASS,"Login UserName and Password error scenario validated successfully");
+			extent_report.log(LogStatus.PASS,"Login UserName and Password error scenario validated successfully");
 			logger.info("Login UserName and Password error scenario validated successfully");
 			
 		} else {
-			extent_report.log(Status.FAIL,"Login UserName and Password error scenario validated with error");
+			extent_report.log(LogStatus.FAIL,"Login UserName and Password error scenario validated with error");
 			logger.error("Login UserName and Password error scenario validated with error");
 			
 			throw new Exception("Login UserName and Password error scenario validated with error");

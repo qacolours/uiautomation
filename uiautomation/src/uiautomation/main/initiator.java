@@ -9,15 +9,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 
 import uiautomation.listners.listnerfunctions;
 import uiautomation.pages.login_page;
@@ -26,13 +27,19 @@ import uiautomation.utils.reusable_user_actions;
 
 public class initiator {
 	
-
-	public static void main(String[] args) {
+	reusable_user_actions oUA = new reusable_user_actions();
+	
+	@Test
+	public void main() {
 		
 		try {
 			
-			System.setProperty("log4j.configurationFile", "./resources/logs/log4j2.xml");
-			Logger logger = LogManager.getLogger(initiator.class.getName());
+			//System.setProperty("log4j.configurationFile", "./resources/logs/log4j2.xml");
+			//Logger logger = LogManager.getLogger(initiator.class.getName());
+			
+			Logger log = Logger.getLogger(login_page.class.getName());
+			PropertyConfigurator.configure(oUA.getProperty("log4j_properties_file"));
+			
 			/*NOTE:: Logger Level Priority - TRACE < DEBUG < INFO < WARN < ERROR < FATAL < OFF
 			Reference of log4j.xml file in below links - 
 			https://stackoverflow.com/questions/49025937/not-able-to-create-a-log-file-using-log4j2
@@ -51,7 +58,7 @@ public class initiator {
 			
 			String strtDate =  oUA.getCurrentDate("no");
 			
-			logger.info("Test suite execution started at " + strtDate);
+			log.info("Test suite execution started at " + strtDate);
 			
 			
 			String TCFilePath = System.getProperty("user.dir") + "/" + oprop.getProperty("testcase_location");
@@ -64,45 +71,45 @@ public class initiator {
 				String sTCRunFlag = oLF.getCellValue(TCFilePath, "TestCases", "RunFlag", iTCIterator);
 				
 				if (sTCID.equalsIgnoreCase("TestCase_1") && sTCRunFlag.equalsIgnoreCase("Y")) {
-					TCExecutionStatus = oTC.TestCase_1(iTCIterator,logger);
+					TCExecutionStatus = oTC.TestCase_1(iTCIterator,log);
 				} else {
 					// Do Nothing
 				}
 				
 				if (sTCID.equalsIgnoreCase("TestCase_2") && sTCRunFlag.equalsIgnoreCase("Y")) {
-					TCExecutionStatus = oTC.TestCase_2(iTCIterator,logger);
+					TCExecutionStatus = oTC.TestCase_2(iTCIterator,log);
 				} else {
 					// Do Nothing
 				}
 				
 				if (sTCID.equalsIgnoreCase("TestCase_3") && sTCRunFlag.equalsIgnoreCase("Y")) {
-					TCExecutionStatus = oTC.TestCase_3(iTCIterator,logger);
+					TCExecutionStatus = oTC.TestCase_3(iTCIterator,log);
 				} else {
 					// Do Nothing
 				}
 				
 				if (sTCID.equalsIgnoreCase("TestCase_4") && sTCRunFlag.equalsIgnoreCase("Y")) {
-					TCExecutionStatus = oTC.TestCase_4(iTCIterator,logger);
+					TCExecutionStatus = oTC.TestCase_4(iTCIterator,log);
 				} else {
 					// Do Nothing
 				}
 				
 				if (sTCID.equalsIgnoreCase("TestCase_5") && sTCRunFlag.equalsIgnoreCase("Y")) {
-					TCExecutionStatus = oTC.TestCase_5(iTCIterator,logger);
+					TCExecutionStatus = oTC.TestCase_5(iTCIterator,log);
 					oLF.setCellValue(TCFilePath, "TestCases", "TCStatus", iTCIterator, TCExecutionStatus);
 				} else {
 					// Do Nothing
 				}
 				
 				if (sTCID.equalsIgnoreCase("TestCase_6") && sTCRunFlag.equalsIgnoreCase("Y")) {
-					TCExecutionStatus = oTC.TestCase_6(iTCIterator,logger);
+					TCExecutionStatus = oTC.TestCase_6(iTCIterator,log);
 					oLF.setCellValue(TCFilePath, "TestCases", "TCStatus", iTCIterator, TCExecutionStatus);
 				} else {
 					// Do Nothing
 				}
 				
 				if (sTCID.equalsIgnoreCase("TestCase_7") && sTCRunFlag.equalsIgnoreCase("Y")) {
-					TCExecutionStatus = oTC.TestCase_7(iTCIterator,logger);
+					TCExecutionStatus = oTC.TestCase_7(iTCIterator,log);
 					oLF.setCellValue(TCFilePath, "TestCases", "TCStatus", iTCIterator, TCExecutionStatus);
 				} else {
 					// Do Nothing
@@ -112,7 +119,7 @@ public class initiator {
             
             String endDate =  oUA.getCurrentDate("no");
             
-			logger.info("Test suite execution completed at " + endDate);
+            log.info("Test suite execution completed at " + endDate);
 			
 		} catch(Exception e) {
 			e.printStackTrace();

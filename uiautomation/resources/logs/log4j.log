@@ -1,0 +1,18 @@
+2022-05-20 01:50:49 INFO  login_page:61 - Test suite execution started at 2022-05-20 01:50:49
+2022-05-20 01:51:02 INFO  login_page:269 - Test Case 7 started at 2022-05-20 01:51:02
+2022-05-20 01:53:15 INFO  login_page:59 - The browser to be launched is : Chrome
+2022-05-20 01:53:17 INFO  login_page:313 - Object txtbx_Username_php is visible in the application
+2022-05-20 01:53:28 INFO  login_page:58 - Step loginToApplication_phptravels executed successfully
+2022-05-20 01:53:29 INFO  login_page:324 - Object lnk_LoggedInUserName_php is visible in the application
+2022-05-20 01:53:34 INFO  login_page:83 - User has been logged in successfully
+2022-05-20 01:53:34 INFO  login_page:86 - Step validateLogin_phptravels executed successfully
+2022-05-20 01:53:35 INFO  login_page:26 - Hotels link is visible in page as expected
+2022-05-20 01:53:41 INFO  login_page:35 - User navigated to Hotel Search page successfully
+2022-05-20 01:53:52 INFO  login_page:88 - City has been selected successfully as Dubai
+2022-05-20 01:54:00 INFO  login_page:138 - No of Room has been selected successfully as 2
+2022-05-20 01:54:03 INFO  login_page:160 - No of Adult has been selected successfully as 4
+2022-05-20 01:54:08 INFO  login_page:191 - No of Child has been selected successfully as 2
+2022-05-20 01:54:44 INFO  login_page:245 - User navigated to the desired Hotel page successfully. Hotel selected is Jumeirah Beach Hotel
+2022-05-20 01:54:47 INFO  login_page:304 - Room Type and Room Price has been decided successfully
+2022-05-20 01:54:53 ERROR login_page:297 - TestCase_7 ran with failure
+2022-05-20 01:54:57 INFO  login_page:122 - Test suite execution completed at 2022-05-20 01:54:57

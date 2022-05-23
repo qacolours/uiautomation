@@ -1,14 +1,14 @@
 package uiautomation.pages;
 
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 
 import uiautomation.listners.listnerfunctions;
 import uiautomation.utils.reusable_user_actions;
@@ -22,7 +22,7 @@ public class phptravel_hotel_booking_page {
 		
 		if (oLF.findElements(param_Browser,"lnk_Hotels").size() != 0) {
 			
-			extent_report.log(Status.INFO,"Hotels link is visible in page as expected");
+			extent_report.log(LogStatus.INFO,"Hotels link is visible in page as expected");
 			logger.info("Hotels link is visible in page as expected");
 			
 			oLF.findElement(param_Browser, "lnk_Hotels").click();
@@ -31,12 +31,12 @@ public class phptravel_hotel_booking_page {
 			
 			if (oLF.findElements(param_Browser, "form_hotelSearch").size() != 0) {
 				
-				extent_report.log(Status.PASS,"User navigated to Hotel Search page successfully");
+				extent_report.log(LogStatus.PASS,"User navigated to Hotel Search page successfully");
 				logger.info("User navigated to Hotel Search page successfully");
 				
 			} else {
 				
-				extent_report.log(Status.FAIL,"Clicking on Hotels link user not navigated to Hotels link");
+				extent_report.log(LogStatus.FAIL,"Clicking on Hotels link user not navigated to Hotels link");
 				logger.error("Clicking on Hotels link user not navigated to Hotels link");
 				
 				throw new Exception("Clicking on Hotels link user not navigated to Hotels link");
@@ -44,7 +44,7 @@ public class phptravel_hotel_booking_page {
 			}
 			
 		} else {
-			extent_report.log(Status.FAIL,"Hotels link is not visible in the page");
+			extent_report.log(LogStatus.FAIL,"Hotels link is not visible in the page");
 			logger.error("Hotels link is not visible in the page");
 			
 			throw new Exception("Hotels link is not visible in the page");
@@ -84,7 +84,7 @@ public class phptravel_hotel_booking_page {
 						}
 					}
 					
-					extent_report.log(Status.PASS,"City has been selected successfully as " + CityName);
+					extent_report.log(LogStatus.PASS,"City has been selected successfully as " + CityName);
 					logger.info("City has been selected successfully as " + CityName);
 					
 				} else {
@@ -134,7 +134,7 @@ public class phptravel_hotel_booking_page {
 					}	
 				}
 				
-				extent_report.log(Status.PASS,"No of Room has been selected successfully as " + Integer.toString(iNumberOfRoomsRequired));
+				extent_report.log(LogStatus.PASS,"No of Room has been selected successfully as " + Integer.toString(iNumberOfRoomsRequired));
 				logger.info("No of Room has been selected successfully as " + Integer.toString(iNumberOfRoomsRequired));
 				
 				oLF.implicitWait(param_Browser, extent_report, 2);
@@ -156,7 +156,7 @@ public class phptravel_hotel_booking_page {
 					}	
 				}
 				
-				extent_report.log(Status.PASS,"No of Adult has been selected successfully as " + Integer.toString(iNumberOfAdultsRequired));
+				extent_report.log(LogStatus.PASS,"No of Adult has been selected successfully as " + Integer.toString(iNumberOfAdultsRequired));
 				logger.info("No of Adult has been selected successfully as " + Integer.toString(iNumberOfAdultsRequired));
 				
 				oLF.implicitWait(param_Browser, extent_report, 2);
@@ -187,7 +187,7 @@ public class phptravel_hotel_booking_page {
 					}
 				}
 				
-				extent_report.log(Status.PASS,"No of Child has been selected successfully as " + Integer.toString(iNumberOfChildrensRequired));
+				extent_report.log(LogStatus.PASS,"No of Child has been selected successfully as " + Integer.toString(iNumberOfChildrensRequired));
 				logger.info("No of Child has been selected successfully as " + Integer.toString(iNumberOfChildrensRequired));
 				
 			}
@@ -241,11 +241,11 @@ public class phptravel_hotel_booking_page {
 					
 					if (sSearchedHotelName.equalsIgnoreCase(sToBeSearchedHotelName)) {
 						
-						extent_report.log(Status.PASS,"User navigated to the desired Hotel page successfully. Hotel selected is " + sHotelName);
+						extent_report.log(LogStatus.PASS,"User navigated to the desired Hotel page successfully. Hotel selected is " + sHotelName);
 						logger.info("User navigated to the desired Hotel page successfully. Hotel selected is " + sHotelName);
 						
 					} else {
-						extent_report.log(Status.FAIL,"User not navigated to the desired Hotel page");
+						extent_report.log(LogStatus.FAIL,"User not navigated to the desired Hotel page");
 						logger.error("User not navigated to the desired Hotel page");
 					}
 					
@@ -300,7 +300,7 @@ public class phptravel_hotel_booking_page {
 				//roomNo.selectByVisibleText("2 - USD " + Integer.toString((int)Double.parseDouble(sToBeSelectedRoomPrice)));
 				roomNo.selectByIndex(1);
 				
-				extent_report.log(Status.PASS,"Room Type and Room Price has been decided successfully");
+				extent_report.log(LogStatus.PASS,"Room Type and Room Price has been decided successfully");
 				logger.info("Room Type and Room Price has been decided successfully");
 				
 				//oLF.implicitWait(param_Browser, extent_report, 10);
@@ -312,7 +312,7 @@ public class phptravel_hotel_booking_page {
 					
 					if (sMessage.equalsIgnoreCase("Booked on specific date")) {
 						
-						extent_report.log(Status.FAIL,"Hotel is booked on the specific date. Please select another date or another room");
+						extent_report.log(LogStatus.FAIL,"Hotel is booked on the specific date. Please select another date or another room");
 						logger.error("Hotel is booked on the specific date. Please select another date or another room");
 						
 						throw new Exception("Hotel is booked on the specific date. Please select another date or another room");
@@ -323,7 +323,7 @@ public class phptravel_hotel_booking_page {
 					oLF.implicitWait(param_Browser, extent_report, 10);
 					
 					//System.out.println("Button clicked successfully");
-					extent_report.log(Status.PASS,"User clicked on Book Now button successfully");
+					extent_report.log(LogStatus.PASS,"User clicked on Book Now button successfully");
 					logger.info("User clicked on Book Now button successfully");
 				}
 				
@@ -346,7 +346,7 @@ public class phptravel_hotel_booking_page {
 			
 			if (oLF.isElementPresent(param_Browser, "panel_PersonInformation") && oLF.isElementPresent(param_Browser, "panel_TravellerInformation") && oLF.isElementPresent(param_Browser, "panel_PaymentMethod")) {
 				
-				extent_report.log(Status.PASS,"User navigated to the provide booking information page successfully");
+				extent_report.log(LogStatus.PASS,"User navigated to the provide booking information page successfully");
 				logger.info("User navigated to the provide booking information page successfully");
 				
 				int iTotalNoOfTraveller = oLF.findElements(param_Browser, "lst_NoOfTravellers").size();
@@ -379,7 +379,7 @@ public class phptravel_hotel_booking_page {
 					}
 				}
 				
-				extent_report.log(Status.PASS,"Traveller details provided successfully");
+				extent_report.log(LogStatus.PASS,"Traveller details provided successfully");
 				logger.info("Traveller details provided successfully");
 				
 				/*
@@ -430,7 +430,7 @@ public class phptravel_hotel_booking_page {
 					//oLF.findElement(param_Browser, "Rdbtn_HotelBookingPaymentBankTransfer").click();
 					oUA.clickUsingJavascript(param_Browser, "Rdbtn_HotelBookingPaymentBankTransfer");
 					
-					extent_report.log(Status.PASS,"Payment method selected successfully as " + sPaymentMethod);
+					extent_report.log(LogStatus.PASS,"Payment method selected successfully as " + sPaymentMethod);
 					logger.info("Payment method selected successfully as " + sPaymentMethod);
 				}
 			} else if (sPaymentMethod.equalsIgnoreCase("Pay Later")) {
@@ -438,7 +438,7 @@ public class phptravel_hotel_booking_page {
 					//oLF.findElement(param_Browser, "Rdbtn_HotelBookingPaymentPayLater").click();
 					oUA.clickUsingJavascript(param_Browser, "Rdbtn_HotelBookingPaymentPayLater");
 					
-					extent_report.log(Status.PASS,"Payment method selected successfully as " + sPaymentMethod);
+					extent_report.log(LogStatus.PASS,"Payment method selected successfully as " + sPaymentMethod);
 					logger.info("Payment method selected successfully as " + sPaymentMethod);
 				}
 			} else if (sPaymentMethod.equalsIgnoreCase("Wallet Balance")) {
@@ -446,7 +446,7 @@ public class phptravel_hotel_booking_page {
 					//oLF.findElement(param_Browser, "Rdbtn_HotelBookingPaymentWalletBalance").click();
 					oUA.clickUsingJavascript(param_Browser, "Rdbtn_HotelBookingPaymentWalletBalance");
 					
-					extent_report.log(Status.PASS,"Payment method selected successfully as " + sPaymentMethod);
+					extent_report.log(LogStatus.PASS,"Payment method selected successfully as " + sPaymentMethod);
 					logger.info("Payment method selected successfully as " + sPaymentMethod);
 				}
 			} else if (sPaymentMethod.equalsIgnoreCase("PayPal")) {
@@ -454,7 +454,7 @@ public class phptravel_hotel_booking_page {
 					//oLF.findElement(param_Browser, "Rdbtn_HotelBookingPaymentPayPal").click();
 					oUA.clickUsingJavascript(param_Browser, "Rdbtn_HotelBookingPaymentPayPal");
 					
-					extent_report.log(Status.PASS,"Payment method selected successfully as " + sPaymentMethod);
+					extent_report.log(LogStatus.PASS,"Payment method selected successfully as " + sPaymentMethod);
 					logger.info("Payment method selected successfully as " + sPaymentMethod);
 				}
 			} else if (sPaymentMethod.equalsIgnoreCase("Stripe")) {
@@ -462,11 +462,11 @@ public class phptravel_hotel_booking_page {
 					//oLF.findElement(param_Browser, "Rdbtn_HotelBookingPaymentStripe").click();
 					oUA.clickUsingJavascript(param_Browser, "Rdbtn_HotelBookingPaymentStripe");
 					
-					extent_report.log(Status.PASS,"Payment method selected successfully as " + sPaymentMethod);
+					extent_report.log(LogStatus.PASS,"Payment method selected successfully as " + sPaymentMethod);
 					logger.info("Payment method selected successfully as " + sPaymentMethod);
 				}
 			} else {
-				extent_report.log(Status.FAIL,"The provided payment method does not exist");
+				extent_report.log(LogStatus.FAIL,"The provided payment method does not exist");
 				logger.error("The provided payment method does not exist");
 				
 				throw new Exception("The provided payment method does not exist");
@@ -488,7 +488,7 @@ public class phptravel_hotel_booking_page {
 				//oLF.findElement(param_Browser, "chkbox_TermsAndConditions").click();
 				oUA.clickUsingJavascript(param_Browser, "chkbox_TermsAndConditions");
 				
-				extent_report.log(Status.PASS,"Terms and Conditions has been selected successfully");
+				extent_report.log(LogStatus.PASS,"Terms and Conditions has been selected successfully");
 				logger.info("Terms and Conditions has been selected successfully");
 			}
 			
@@ -518,7 +518,7 @@ public class phptravel_hotel_booking_page {
 			
 			if (oLF.isElementPresent(param_Browser, "panel_BookingConfirmation")) {
 				
-				extent_report.log(Status.PASS,"User navigated to Booking Confirmation page successfully");
+				extent_report.log(LogStatus.PASS,"User navigated to Booking Confirmation page successfully");
 				logger.info("User navigated to Booking Confirmation page successfully");
 				
 				if (oLF.isElementPresent(param_Browser, "txt_ReservationNumber")) {
@@ -526,7 +526,7 @@ public class phptravel_hotel_booking_page {
 					
 					System.out.println("Booking successful. Booking reference number generated is : " + sReservationNumber);
 					
-					extent_report.log(Status.PASS,"Booking successful. Booking reference number generated is : " + sReservationNumber);
+					extent_report.log(LogStatus.PASS,"Booking successful. Booking reference number generated is : " + sReservationNumber);
 					logger.info("Booking successful. Booking reference number generated is : " + sReservationNumber);
 					
 					sBookingTax = oLF.findElement(param_Browser, "span_BookingTax").getText().replace(" USD Booking Tax: USD ", "").trim();
@@ -552,7 +552,7 @@ public class phptravel_hotel_booking_page {
 				oLF.implicitWait(param_Browser, extent_report, 10);
 				
 				if (param_Browser.getCurrentUrl().equalsIgnoreCase("https://www.phptravels.net/payment/bank-transfer")) {
-					extent_report.log(Status.PASS,"Payment processed for the booking successfully");
+					extent_report.log(LogStatus.PASS,"Payment processed for the booking successfully");
 					logger.info("Payment processed for the booking successfully");
 				}
 			}

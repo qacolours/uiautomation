@@ -15,7 +15,7 @@ import java.util.Properties;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.apache.poi.hssf.model.InternalSheet;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -30,8 +30,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 
 import io.cucumber.java.mk_latn.No;
 import uiautomation.utils.reusable_user_actions;
@@ -500,7 +500,7 @@ public class listnerfunctions {
 	else will give error - oBrowser.manage().timeouts().implicitlyWait(Duration.ofMillis(10000));*/
 	public void implicitWait(WebDriver oBrowser,ExtentTest extent_report,int waitInSeconds) {
 		oBrowser.manage().timeouts().implicitlyWait(Duration.ofMillis(waitInSeconds));
-		extent_report.log(Status.INFO,"Implicitly waited for " + Integer.toString(waitInSeconds) + " seconds during TC execution");
+		extent_report.log(LogStatus.INFO,"Implicitly waited for " + Integer.toString(waitInSeconds) + " seconds during TC execution");
 	}
 	
 	/*public void explicitWaitUntilElementClickable(WebDriver oBrowser,ExtentTest extent_report,int waitInSeconds) {

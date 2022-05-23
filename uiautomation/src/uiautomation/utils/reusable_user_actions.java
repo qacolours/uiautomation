@@ -1,11 +1,16 @@
 package uiautomation.utils;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.JavascriptExecutor;
@@ -17,12 +22,31 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
-
 import uiautomation.listners.listnerfunctions;
 
 public class reusable_user_actions extends listnerfunctions {
+	
+	Properties oprop = new Properties();
+	
+	public String getProperty(String property_name) throws Exception {
+		//Properties oprop = new Properties();
+		InputStream inputstrm = new FileInputStream(System.getProperty("user.dir") + "/src/configuration/config.properties");
+		oprop.load(inputstrm);
+		
+		String property_value = oprop.getProperty(property_name);
+		inputstrm.close();
+		
+		return property_value;
+	}
+	
+	public void setProperty(String property_name,String property_value) throws Exception {
+		//Properties oprop = new Properties();
+		OutputStream outputstrm = new FileOutputStream(System.getProperty("user.dir") + "/src/configuration/config.properties");
+		
+		oprop.setProperty(property_name,property_value);
+		oprop.store(outputstrm, "");
+		outputstrm.close();
+	}
 	
 	/*Method Name - getCurrentDate
 	 * Method Function - To return the current date in form of string

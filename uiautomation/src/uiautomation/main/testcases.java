@@ -1,12 +1,11 @@
 package uiautomation.main;
 
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 
 import uiautomation.listners.listnerfunctions;
 import uiautomation.pages.home_page;
@@ -30,25 +29,23 @@ public class testcases {
 	listnerfunctions oLF = new listnerfunctions();
 	reusable_user_actions oUA = new reusable_user_actions();
 	
-	ExtentReports extent_report = new ExtentReports();
-	ExtentSparkReporter spark = new ExtentSparkReporter(System.getProperty("user.dir") + "\\Resources\\Reports\\Reports.html");
+	ExtentReports reports;
 	
-	testcases() {
-		spark.config().setDocumentTitle("Automation Report");
-		spark.config().setReportName("Blaze Automation Suite");
-		extent_report.attachReporter(spark);
+	
+	testcases() throws Exception {
+		reports = new ExtentReports(System.getProperty("user.dir") + oUA.getProperty("extent_report_path"), true);
 	}
 	
 	public String TestCase_1(int iRowIterator,Logger logger) {
 		
 		String TCExecutionStatus = null;
 		
-		ExtentTest ex_tc1 = extent_report.createTest("TestCase_1");
+		ExtentTest ex_tc1 = reports.startTest("TestCase_1");
 		
 		try {
             String strtDate =  oUA.getCurrentDate("no");
 			
-            ex_tc1.log(Status.INFO,"Test Case 1 started at " + strtDate);
+            ex_tc1.log(LogStatus.INFO,"Test Case 1 started at " + strtDate);
 			logger.info("Test Case 1 started at " + strtDate);
 			
 			oBrowser = oBA.openApplication(iRowIterator,ex_tc1,logger);
@@ -61,34 +58,35 @@ public class testcases {
             
             String endDate =  oUA.getCurrentDate("no");
             
-            ex_tc1.log(Status.INFO,"Test Case 1 completed at " + endDate);
+            ex_tc1.log(LogStatus.INFO,"Test Case 1 completed at " + endDate);
 			logger.info("Test Case 1 completed at " + endDate);
 			
-			ex_tc1.log(Status.PASS,"Test Case 1 passed successfully");
+			ex_tc1.log(LogStatus.PASS,"Test Case 1 passed successfully");
 			logger.info("Test Case 1 passed successfully");
 			
 			TCExecutionStatus = "Pass";
 			
 		} catch (Exception e) {
-			ex_tc1.log(Status.FAIL,"TestCase_1 ran with failure");
+			ex_tc1.log(LogStatus.FAIL,"TestCase_1 ran with failure");
 			logger.error("TestCase_1 ran with failure");
 			
 			TCExecutionStatus = "Fail";
 		}
 		
-		extent_report.flush();
+		reports.endTest(ex_tc1);
+		reports.flush();
 		return TCExecutionStatus;
 	}
 	
 	public String TestCase_2(int iRowIterator,Logger logger) {
 		String TCExecutionStatus = null;
 		
-		ExtentTest ex_tc2 = extent_report.createTest("TestCase_2");
+		ExtentTest ex_tc2 = reports.startTest("TestCase_2");
 		
 		try {
 			String strtDate = oUA.getCurrentDate("no");
 			
-            ex_tc2.log(Status.INFO,"Test Case 2 started at " + strtDate);
+            ex_tc2.log(LogStatus.INFO,"Test Case 2 started at " + strtDate);
 			logger.info("Test Case 2 started at " + strtDate);
 			
 			oBrowser = oBA.openApplication(iRowIterator,ex_tc2,logger);
@@ -97,22 +95,23 @@ public class testcases {
 			
 			String endDate = oUA.getCurrentDate("no");
             
-			ex_tc2.log(Status.INFO,"Test Case 2 completed at " + endDate);
+			ex_tc2.log(LogStatus.INFO,"Test Case 2 completed at " + endDate);
 			logger.info("Test Case 2 completed at " + endDate);
 			
-			ex_tc2.log(Status.PASS,"Test Case 2 passed successfully");
+			ex_tc2.log(LogStatus.PASS,"Test Case 2 passed successfully");
 			logger.info("Test Case 2 passed successfully");
 			
 			TCExecutionStatus = "Pass";
 			
 		} catch (Exception e) {			
-			ex_tc2.log(Status.FAIL,"TestCase_2 ran with failure");
+			ex_tc2.log(LogStatus.FAIL,"TestCase_2 ran with failure");
 			logger.error("TestCase_2 ran with failure");
 			
 			TCExecutionStatus = "Fail";
 		}
 		
-		extent_report.flush();
+		reports.endTest(ex_tc2);
+		reports.flush();
 		return TCExecutionStatus;
 		
 	}
@@ -135,19 +134,19 @@ public class testcases {
 			TCExecutionStatus = "Fail";
 		}
 		
-		extent_report.flush();
+		reports.flush();
 		return TCExecutionStatus;
 	}
 	
 	public String TestCase_4(int iRowIterator,Logger logger) {
 		String TCExecutionStatus = null;
 		
-		ExtentTest ex_tc4 = extent_report.createTest("TestCase_4");
+		ExtentTest ex_tc4 = reports.startTest("TestCase_4");
 		
 		try {
 			String strtDate = oUA.getCurrentDate("no");
 			
-            ex_tc4.log(Status.INFO,"Test Case 4 started at " + strtDate);
+            ex_tc4.log(LogStatus.INFO,"Test Case 4 started at " + strtDate);
 			logger.info("Test Case 4 started at " + strtDate);
 			
 			oBrowser = oBA.openApplication(iRowIterator,ex_tc4,logger);
@@ -157,34 +156,35 @@ public class testcases {
 			
 			String endDate = oUA.getCurrentDate("no");
             
-            ex_tc4.log(Status.INFO,"Test Case 4 completed at " + endDate);
+            ex_tc4.log(LogStatus.INFO,"Test Case 4 completed at " + endDate);
 			logger.info("Test Case 4 completed at " + endDate);
 			
-			ex_tc4.log(Status.PASS,"Test Case 4 passed successfully");
+			ex_tc4.log(LogStatus.PASS,"Test Case 4 passed successfully");
 			logger.info("Test Case 4 passed successfully");
 			
 			TCExecutionStatus = "Pass";
 			
 		} catch (Exception e) {
-			ex_tc4.log(Status.FAIL,"TestCase_4 ran with failure");
+			ex_tc4.log(LogStatus.FAIL,"TestCase_4 ran with failure");
 			logger.error("TestCase_4 ran with failure");
 			
 			TCExecutionStatus = "Fail";
 		}
 		
-		extent_report.flush();
+		reports.endTest(ex_tc4);
+		reports.flush();
 		return TCExecutionStatus;
 	}
 	
 	public String TestCase_5(int iRowIterator,Logger logger) {
 		String TCExecutionStatus = null;
 		
-		ExtentTest ex_tc5 = extent_report.createTest("TestCase_5");
+		ExtentTest ex_tc5 = reports.startTest("TestCase_5");
 		
 		try {
 			String strtDate = oUA.getCurrentDate("no");
 			
-            ex_tc5.log(Status.INFO,"Test Case 5 started at " + strtDate);
+            ex_tc5.log(LogStatus.INFO,"Test Case 5 started at " + strtDate);
 			logger.info("Test Case 5 started at " + strtDate);
 			
 			oBrowser = oBA.openApplication(iRowIterator,ex_tc5,logger);
@@ -193,21 +193,22 @@ public class testcases {
 			
 			String endDate = oUA.getCurrentDate("no");
             
-			ex_tc5.log(Status.INFO,"Test Case 5 completed at " + endDate);
+			ex_tc5.log(LogStatus.INFO,"Test Case 5 completed at " + endDate);
 			logger.info("Test Case 5 completed at " + endDate);
 			
-			ex_tc5.log(Status.PASS,"Test Case 5 passed successfully");
+			ex_tc5.log(LogStatus.PASS,"Test Case 5 passed successfully");
 			logger.info("Test Case 5 passed successfully");
 			
 			TCExecutionStatus = "Pass";
 		} catch (Exception e) {
-			ex_tc5.log(Status.FAIL,"TestCase_5 ran with failure");
+			ex_tc5.log(LogStatus.FAIL,"TestCase_5 ran with failure");
 			logger.error("TestCase_5 ran with failure");
 			
 			TCExecutionStatus = "Fail";
 		}
 		
-		extent_report.flush();
+		reports.endTest(ex_tc5);
+		reports.flush();
 		return TCExecutionStatus;
 	}
 	
@@ -216,13 +217,13 @@ public class testcases {
 		
 		String TCExecutionStatus = null;
 		
-		ExtentTest ex_tc6 = extent_report.createTest("TestCase_6");
+		ExtentTest ex_tc6 = reports.startTest("TestCase_6");
 		
 		try {
 			
 			String strtDate =  oUA.getCurrentDate("no");
 			
-			ex_tc6.log(Status.INFO,"Test Case 6 started at " + strtDate);
+			ex_tc6.log(LogStatus.INFO,"Test Case 6 started at " + strtDate);
 			logger.info("Test Case 6 started at " + strtDate);
 			
 			oBrowser = oBA.openApplication(iRowIterator,ex_tc6,logger);
@@ -234,22 +235,23 @@ public class testcases {
             
             String endDate =  oUA.getCurrentDate("no");
             
-            ex_tc6.log(Status.INFO,"Test Case 6 completed at " + endDate);
+            ex_tc6.log(LogStatus.INFO,"Test Case 6 completed at " + endDate);
 			logger.info("Test Case 6 completed at " + endDate);
 			
-			ex_tc6.log(Status.PASS,"Test Case 6 passed successfully");
+			ex_tc6.log(LogStatus.PASS,"Test Case 6 passed successfully");
 			logger.info("Test Case 6 passed successfully");
 			
 			TCExecutionStatus = "Pass";
 			
 		} catch (Exception e) {
-			ex_tc6.log(Status.FAIL,"TestCase_6 ran with failure");
+			ex_tc6.log(LogStatus.FAIL,"TestCase_6 ran with failure");
 			logger.error("TestCase_6 ran with failure");
 			
 			TCExecutionStatus = "Fail";
 		}
 		
-		extent_report.flush();
+		reports.endTest(ex_tc6);
+		reports.flush();
 		return TCExecutionStatus;
 	}
 	
@@ -258,12 +260,12 @@ public class testcases {
 		
 		String TCExecutionStatus = null;
 		
-		ExtentTest ex_tc7 = extent_report.createTest("TestCase_7 : Book Hotel @ PHPTravels");
+		ExtentTest ex_tc7 = reports.startTest("TestCase_7 : Book Hotel @ PHPTravels");
 		
 		try {
 			String strtDate =  oUA.getCurrentDate("no");
 			
-			ex_tc7.log(Status.INFO,"Test Case 7 started at " + strtDate);
+			ex_tc7.log(LogStatus.INFO,"Test Case 7 started at " + strtDate);
 			logger.info("Test Case 7 started at " + strtDate);
 			
 			oBrowser = oBA.openApplication(iRowIterator,ex_tc7,logger);
@@ -282,22 +284,23 @@ public class testcases {
             
             String endDate =  oUA.getCurrentDate("no");
             
-            ex_tc7.log(Status.INFO,"Test Case 7 completed at " + endDate);
+            ex_tc7.log(LogStatus.INFO,"Test Case 7 completed at " + endDate);
 			logger.info("Test Case 7 completed at " + endDate);
 			
-			ex_tc7.log(Status.PASS,"Test Case 7 passed successfully");
+			ex_tc7.log(LogStatus.PASS,"Test Case 7 passed successfully");
 			logger.info("Test Case 7 passed successfully");
 			
 			TCExecutionStatus = "Pass";
 			
 		} catch (Exception e) {
-			ex_tc7.log(Status.FAIL,"TestCase_7 ran with failure");
+			ex_tc7.log(LogStatus.FAIL,"TestCase_7 ran with failure");
 			logger.error("TestCase_7 ran with failure");
 			
 			TCExecutionStatus = "Fail";
 		}
 		
-		extent_report.flush();
+		reports.endTest(ex_tc7);
+		reports.flush();
 		return TCExecutionStatus;
 	}
 

@@ -14,12 +14,12 @@
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
-			<version>5.1.0</version>
+			<version>5.2.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
-			<version>5.1.0</version>
+			<version>5.2.2</version>
 		</dependency>
 		<dependency>
 			<groupId>io.cucumber</groupId>
@@ -27,35 +27,120 @@
 			<version>7.1.0</version>
 		</dependency>
 		<dependency>
-			<groupId>com.aventstack</groupId>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.relevantcodes</groupId>
 			<artifactId>extentreports</artifactId>
-			<version>5.0.5</version>
+			<version>2.41.2</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-api</artifactId>
-			<version>2.17.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>2.17.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-slf4j-impl</artifactId>
-			<version>2.17.2</version>
+    		<groupId>ch.fortysix</groupId>
+    		<artifactId>maven-postman-plugin</artifactId>
+    		<version>0.1.6</version>
 		</dependency>
 	</dependencies>
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
+			<!-- 
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 				<configuration>
 					<release>12</release>
 				</configuration>
+			</plugin>
+			 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M6</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>ch.fortysix</groupId>
+				<artifactId>maven-postman-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>send a mail</id>
+						<phase>test</phase>
+						<goals>
+							<goal>send-mail</goal>
+						</goals>
+						<inherited>true</inherited>		
+						<configuration>
+							<!-- From Email address -->
+							<from>qacolours@gmail.com</from>
+							
+							<!--  Email subject -->
+							<subject>Test Automation Report</subject>
+							
+							<!-- Fail the build if the mail doesnt reach -->
+							<failonerror>true</failonerror>
+							
+							<htmlMessage>
+                    			<![CDATA[
+                    			<p>Hi All, we are having a new deployment. Test Automation execution report is attached.</p>
+                    			<br>
+                    			<p>Have a nice day.</p>
+                    			]]>
+                			</htmlMessage>
+				
+							<!-- host -->
+							<mailhost>smtp.gmail.com</mailhost>
+							<!-- port of the host -->
+							<mailport>465</mailport>
+							<mailssl>true</mailssl>
+							<mailAltConfig>true</mailAltConfig>
+				
+							<!-- Email Authentication(USername and Password) -->
+							<mailuser>qacolours@gmail.com</mailuser>
+							<mailpassword>Start123#</mailpassword>
+				
+							<receivers>
+								<!-- To Email address -->
+								<!--  
+								<receiver>bluemoonkoustav@gmail.com</receiver>
+								<receiver>dkoustav22@gmail.com</receiver>
+								<receiver>das_koustav22@yahoo.com</receiver>
+								-->
+							</receivers>
+				
+							<fileSets>
+								<fileSet>
+									<!-- Report directory Path -->
+									<directory>C://github//uiautomation//uiautomation//resources//reports//</directory>
+									<includes>
+										<!-- Report file name -->
+										<include>report.html</include>
+									</includes>
+									<!-- Use Regular Expressions like **/*.html if you want all the html files to send-->
+								</fileSet>
+							</fileSets>				
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
